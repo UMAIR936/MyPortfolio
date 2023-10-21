@@ -1,0 +1,108 @@
+{
+  "basic_info": {
+    "description_header": "Hi",
+    "description": "👋 I'm Umair Ghaffar. Computer science graduate with seven months of professional experience in programming. Demonstrate proficiency in delivering high-quality code. Eager to continue honing my skills and explore new opportunities for growth in the field",
+    "section_name": {
+      "about": "About me",
+      "projects": "Projects",
+      "skills": "Skills",
+      "experience": "Experience"
+    }
+  },
+  "projects": [
+    {
+      "title": "AskCUI",
+      "startDate": "2022",
+      "description": "AskCUI serves as a one stop comprehensive solution for university students, providing a centralized platform for inquiries, document retrieval, communication, sharing experiences and information on campus amenities including hostels and food points.",
+      "images": [
+        "images/portfolio/adventure/p2.jpeg",
+        "images/portfolio/adventure/p1.jpeg"
+      ],
+      "url": "https://github.com/UMAIR936/AskCUI",
+      "technologies": [
+        {
+          "class": "devicon-react-plain",
+          "name": "React"
+        },
+        {
+          "class": "devicon-nodejs-plain",
+          "name": "Node"
+        },
+        {
+          "class": "devicon-mongodb-plain",
+          "name": "MongoDB"
+        }
+      ]
+    },
+    {
+      "title": "Carrier Network",
+      "startDate": "2023",
+      "description": "The most expanded application I had opportunity to work with. Streamlined carrier onboarding within carrier-network of Dispatch-one (Transportation Management System). It provides detailed insights into carrier documents, invitation, truck types, multiple geographical locations and much more to enhance operational efficiency.",
+      "images": [
+        "images/portfolio/animal-shelter/p1.jpg",
+        "images/portfolio/animal-shelter/p2.jpg"
+      ],
+      "url": "",
+      "technologies": [
+        {
+          "class": "devicon-react-plain",
+          "name": "React"
+        },
+        {
+          "class": "devicon-nodejs-plain",
+          "name": "Node"
+        },
+        {
+          "class": "devicon-mongodb-plain",
+          "name": "MongoDB"
+        }
+      ]
+    },
+    {
+      "title": "Dispatch Dashboard",
+      "startDate": "2023",
+      "description": "Worked on dispatch-dashboard in Dispatch-one ( Transportation management system ). Dispatch dashboard helps dispatchers to dispatch loads directly to carriers, chatting with carriers and load reporting processes, fostering seamless communication between dispatchers and carriers.",
+      "images": [
+        "images/portfolio/photography/p2.jpg",
+        "images/portfolio/photography/p1.jpg"
+      ],
+      "url": "",
+      "technologies": [
+        {
+          "class": "devicon-react-original",
+          "name": "React"
+        },
+        {
+          "class": "devicon-javascript-plain",
+          "name": "JavaScript"
+        }
+      ]
+    }
+  ],
+  "experience": [
+    {
+      "company": "Devaxl, Lahore",
+      "title": "Junior Software Engineer",
+      "years": "02.2023 - 09/2023",
+      "mainTech": ["MERN stack"],
+      "technologies": [
+        "JavaScript",
+        "TypeScript",
+        "React",
+        "Node js",
+        "Express js",
+        "MongoDB",
+        "Strapi",
+        "HTML",
+        "CSS"
+      ]
+    },
+    {
+      "company": "MindStorm Studios, Lahore",
+      "title": "Game Designer",
+      "years": "07.2022 - 10.2022",
+      "mainTech": ["Unity, C#"],
+      "technologies": ["Unity", "C#"]
+    }
+  ]
+}
