@@ -1,17 +1,22 @@
 import React, { useCallback, useState } from "react";
 import ProjectDetailsModal from "./ProjectDetailsModal";
 
-const Projects = ({resumeProjects, resumeBasicInfo}) => {
-
+const Projects = ({ resumeProjects, resumeBasicInfo }) => {
   const [deps, setDeps] = useState({});
   const [detailsModalShow, setDetailsModalShow] = useState(false);
 
-  const detailsModalDisplay = useCallback((data) => {
-    setDetailsModalShow(true);
-    setDeps(data);
-  }, [setDetailsModalShow, setDeps]);
+  const detailsModalDisplay = useCallback(
+    (data) => {
+      setDetailsModalShow(true);
+      setDeps(data);
+    },
+    [setDetailsModalShow, setDeps]
+  );
 
-  let detailsModalClose = useCallback(() => setDetailsModalShow(false), [setDetailsModalShow]);
+  let detailsModalClose = useCallback(
+    () => setDetailsModalShow(false),
+    [setDetailsModalShow]
+  );
   if (resumeProjects && resumeBasicInfo) {
     var sectionName = resumeBasicInfo.section_name.projects;
     var projects = resumeProjects.map(function (projects) {
@@ -28,13 +33,15 @@ const Projects = ({resumeProjects, resumeBasicInfo}) => {
                   src={projects.images[0]}
                   alt="projectImages"
                   height="230"
-                  style={{marginBottom: 0, paddingBottom: 0, position: 'relative'}}
+                  style={{
+                    marginBottom: 0,
+                    paddingBottom: 0,
+                    position: "relative",
+                  }}
                 />
                 <span className="project-date">{projects.startDate}</span>
                 <br />
-                <p className="project-title-settings mt-3">
-                  {projects.title}
-                </p>
+                <p className="project-title-settings mt-3">{projects.title}</p>
               </div>
             </div>
           </span>
@@ -60,6 +67,6 @@ const Projects = ({resumeProjects, resumeBasicInfo}) => {
       </div>
     </section>
   );
-}
+};
 
 export default Projects;

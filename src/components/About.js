@@ -4,7 +4,7 @@ import angularIcon from "@iconify/icons-logos/angular-icon";
 import reactIcon from "@iconify/icons-logos/react";
 import vueIcon from "@iconify/icons-logos/vue";
 
-const About = ({sharedBasicInfo, resumeBasicInfo}) => {
+const About = ({ sharedBasicInfo, resumeBasicInfo }) => {
   if (sharedBasicInfo) {
     var profilepic = "images/" + sharedBasicInfo.image;
   }
@@ -24,21 +24,10 @@ const About = ({sharedBasicInfo, resumeBasicInfo}) => {
           <div className="col-md-4 mb-5 center">
             <div className="polaroid">
               <span style={{ cursor: "auto" }}>
-                <img
-                  height="250px"
-                  src={profilepic}
-                  alt="Avatar placeholder"
-                />
-                <Icon
-                  icon={angularIcon}
-                  style={{ fontSize: "400%", margin: "9% 5% 0 5%" }}
-                />
+                <img height="250px" src={profilepic} alt="Avatar placeholder" />
+
                 <Icon
                   icon={reactIcon}
-                  style={{ fontSize: "400%", margin: "9% 5% 0 5%" }}
-                />
-                <Icon
-                  icon={vueIcon}
                   style={{ fontSize: "400%", margin: "9% 5% 0 5%" }}
                 />
               </span>
@@ -88,6 +77,6 @@ const About = ({sharedBasicInfo, resumeBasicInfo}) => {
       </div>
     </section>
   );
-}
+};
 
 export default About;
