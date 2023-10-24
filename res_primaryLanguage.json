@@ -35,14 +35,40 @@
       ]
     },
     {
-      "title": "Carrier Network",
+      "title": "chatExpress",
       "startDate": "2023",
-      "description": "The most expanded application I had opportunity to work with. Streamlined carrier onboarding within carrier-network of Dispatch-one (Transportation Management System). It provides detailed insights into carrier documents, invitation, truck types, multiple geographical locations and much more to enhance operational efficiency.",
+      "description": "Developed a real-time chat application using the MERN stack and integrated Socket.IO for seamless communication. Ensured responsiveness across devices with a user-friendly interface powered by React. Future plans include group chat support and enhanced security measures.",
       "images": [
-        "images/portfolio/animal-shelter/p1.jpg",
-        "images/portfolio/animal-shelter/p2.jpg"
+        "images/portfolio/chat/chat3.png",
+        "images/portfolio/chat/chat4.png",
+        "images/portfolio/chat/chat2.png"
       ],
-      "url": "",
+      "url": "https://github.com/UMAIR936/chatExpress",
+      "technologies": [
+        {
+          "class": "devicon-react-plain",
+          "name": "React"
+        },
+        {
+          "class": "devicon-nodejs-plain",
+          "name": "Node"
+        },
+        {
+          "class": "devicon-socketio-plain",
+          "name": "SocketIo"
+        }
+      ]
+    },
+
+    {
+      "title": "Dispatch Dashboard",
+      "startDate": "2023",
+      "description": "Worked on dispatch-dashboard in Dispatch-one ( Transportation management system ). Dispatch dashboard helps dispatchers to dispatch loads directly to carriers, chatting with carriers and load reporting processes, fostering seamless communication between dispatchers and carriers.",
+      "images": [
+        "images/portfolio/dispatch/p2.jpg",
+        "images/portfolio/dispatch/dis.png"
+      ],
+      "url": "https://apolloe.com/",
       "technologies": [
         {
           "class": "devicon-react-plain",
@@ -59,14 +85,60 @@
       ]
     },
     {
-      "title": "Dispatch Dashboard",
+      "title": "Carrier Network",
       "startDate": "2023",
-      "description": "Worked on dispatch-dashboard in Dispatch-one ( Transportation management system ). Dispatch dashboard helps dispatchers to dispatch loads directly to carriers, chatting with carriers and load reporting processes, fostering seamless communication between dispatchers and carriers.",
+      "description": "The most expanded application I had opportunity to work with. Streamlined carrier onboarding within carrier-network of Dispatch-one (Transportation Management System). It provides detailed insights into carrier documents, invitation, truck types, multiple geographical locations and much more to enhance operational efficiency.",
       "images": [
-        "images/portfolio/photography/p2.jpg",
-        "images/portfolio/photography/p1.jpg"
+        "images/portfolio/animal-shelter/carr.png",
+        "images/portfolio/animal-shelter/p1.jpg",
+        "images/portfolio/animal-shelter/p2.jpg"
       ],
-      "url": "",
+      "url": "https://apolloe.com/",
+      "technologies": [
+        {
+          "class": "devicon-react-plain",
+          "name": "React"
+        },
+        {
+          "class": "devicon-nodejs-plain",
+          "name": "Node"
+        },
+        {
+          "class": "devicon-mongodb-plain",
+          "name": "MongoDB"
+        }
+      ]
+    },
+    {
+      "title": "Portfolio",
+      "startDate": "2023",
+      "description": "",
+      "images": [
+        "images/portfolio/portfolio/port2.png",
+        "images/portfolio/portfolio/port1.png"
+      ],
+      "url": "https://apolloe.com/",
+      "technologies": [
+        {
+          "class": "devicon-react-plain",
+          "name": "React"
+        },
+        {
+          "class": "devicon-nodejs-plain",
+          "name": "Node"
+        },
+        {
+          "class": "devicon-mongodb-plain",
+          "name": "MongoDB"
+        }
+      ]
+    },
+    {
+      "title": "Expense Tracker",
+      "startDate": "2023",
+      "description": "Comprehensive expense tracking app in React, facilitating expense entry, listing, chart visualization, and year-based filtering for effective finance management.",
+      "images": ["images/portfolio/chat/exp.png"],
+      "url": "https://umair936.github.io/ReactExpenseTrackingApp/",
       "technologies": [
         {
           "class": "devicon-react-original",
