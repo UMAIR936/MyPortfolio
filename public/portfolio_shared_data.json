@@ -62,6 +62,26 @@
         "name": "Node",
         "class": "devicon-nodejs-plain",
         "level": "60"
+      },
+      {
+        "name": "React",
+        "class": "devicon-react-plain",
+        "level": "60"
+      },
+      {
+        "name": "Bootstrap",
+        "class": "devicon-bootstrap-plain",
+        "level": "60"
+      },
+      {
+        "name": "Postgresql",
+        "class": "devicon-postgresql-plain",
+        "level": "60"
+      },
+      {
+        "name": "SocketIO",
+        "class": "devicon-socketio-plain",
+        "level": "60"
       }
     ]
   }

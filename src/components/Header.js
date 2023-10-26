@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from "react";
 import Typical from "react-typical";
 import Switch from "react-switch";
-
+import MyPDF from "../assets/umair_ghafar_resume.pdf";
 const Header = ({ sharedData }) => {
   let titles = [];
   const [checked, setChecked] = useState(false);
@@ -33,7 +33,10 @@ const Header = ({ sharedData }) => {
     },
     (props, prevProp) => true
   );
-
+  const openPDF = () => {
+    const pdfUrl = MyPDF;
+    window.open(pdfUrl, "_blank");
+  };
   return (
     <header
       id="home"
@@ -95,6 +98,22 @@ const Header = ({ sharedData }) => {
               id="icon-switch"
             />
           </div>
+
+          <button
+            style={{
+              marginTop: "20px",
+              width: "140px",
+              height: "40px",
+              radius: "8px",
+              border: "1px solid white",
+              color: "white",
+              fontSize: "19px",
+              background: "#ec7368",
+            }}
+            onClick={openPDF}
+          >
+            Resume
+          </button>
         </div>
       </div>
     </header>

@@ -1,6 +1,6 @@
 import React from "react";
 
-const Footer = ({sharedBasicInfo}) => {
+const Footer = ({ sharedBasicInfo }) => {
   if (sharedBasicInfo) {
     var networks = sharedBasicInfo.social.map(function (network) {
       return (
@@ -21,16 +21,13 @@ const Footer = ({sharedBasicInfo}) => {
         <div className="copyright py-4 text-center">
           <div className="container">
             <small>
-              Copyright &copy;{" "}
-              {sharedBasicInfo
-                ? sharedBasicInfo.name
-                : "???"}
+              Copyright &copy; {sharedBasicInfo ? sharedBasicInfo.name : "???"}
             </small>
           </div>
         </div>
       </div>
     </footer>
   );
-}
+};
 
 export default Footer;
