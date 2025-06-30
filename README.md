@@ -1,70 +1,273 @@
-# Getting Started with Create React App
+# Git Workflow Guidelines for Frontend Development
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A comprehensive guide for implementing structured Git commit workflows in NextJS 14 and Vite projects using Husky, Prettier, and commit conventions.
 
-## Available Scripts
+## Why This Workflow?
 
-In the project directory, you can run:
+### Purpose
 
-### `npm start`
+This workflow is designed to enforce consistent development practices and maintain high code quality across teams. Here's why each component matters:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+#### 1. Standardized Commit Messages
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- **Problem**: Unclear commit messages make it difficult to track changes and understand project history
+- **Solution**: Using Conventional Commits format ensures:
+  - Easy generation of changelogs
+  - Simple identification of breaking changes
+  - Clear communication of change impact
+  - Automated version management
 
-### `npm test`
+#### 2. Branch Naming Conventions
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **Problem**: Inconsistent branch names lead to confusion and difficult project management
+- **Solution**: Structured branch naming:
+  - Links code to project tasks/tickets
+  - Shows purpose of changes (feature, bugfix, etc.)
+  - Enables automated workflows
+  - Simplifies branch management and cleanup
 
-### `npm run build`
+#### 3. Automated Quality Checks
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **Problem**: Manual code quality management is error-prone and inconsistent
+- **Solution**: Pre-commit and pre-push hooks:
+  - Prevent commits with incorrect formatting
+  - Enforce code style consistency
+  - Catch issues before they reach the repository
+  - Save time in code reviews
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+#### 4. Developer Experience Benefits
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Reduced cognitive load through automation
+- Consistent codebase across team members
+- Faster onboarding for new developers
+- Simplified project maintenance
+- Better collaboration through clear standards
 
-### `npm run eject`
+#### 5. Project Management Benefits
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- Clear tracking of feature development
+- Easy identification of changes for releases
+- Simplified debugging through clear history
+- Better integration with CI/CD pipelines
+- Enhanced project documentation
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Table of Contents
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- [Prerequisites](#prerequisites)
+- [Project Setup](#project-setup)
+- [Installation](#installation)
+- [Configuration](#configuration)
+- [Branch Naming Convention](#branch-naming-convention)
+- [Commit Message Guidelines](#commit-message-guidelines)
+- [Automated Checks](#automated-checks)
+- [Best Practices and Tips](#best-practices-and-tips)
+- [Tools Explained](#tools-explained)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Prerequisites
 
-## Learn More
+- Bun Package Manager
+- Git
+- Node.js (Latest LTS version recommended)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Project Setup
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### For New Projects
 
-### Code Splitting
+```bash
+bun create cloudflare@latest proj-name --framework=next
+cd proj-name
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Required Dependencies
 
-### Analyzing the Bundle Size
+Install the necessary development dependencies:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```bash
+bun add husky prettier validate-branch-name @commitlint/{cli,config-conventional} prettier-plugin-tailwindcss
+```
 
-### Making a Progressive Web App
+## Configuration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### Prettier Configuration
 
-### Advanced Configuration
+Add the following to your `package.json`:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+```json
+{
+  "prettier": {
+    "plugins": ["prettier-plugin-tailwindcss"]
+  }
+}
+```
 
-### Deployment
+### Git Hooks and Validation Setup
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Run these commands to set up Git hooks and validation:
 
-### `npm run build` fails to minify
+```bash
+bun husky init
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+# Create branch name validation configuration
+echo '{
+    "pattern": "^(master|main|dev|uat|ppt|(feature|release|bugfix|hotfix|test|chore)/(:\\d+-)?[a-zA-Z0-9\\-]+)$",
+    "errorMsg": "Branch name must be in this format: (master|main|dev|uat|ppt|(feature|release|bugfix|hotfix|test|chore)/(:<TASK-NO>-)?<SHORT-DESCRIPTION>) , change branch name by this command(git branch -m <newname>). Task Number is optional and can be used from Jira/Github Project Management Tool/Any other Project Management Tool."
+}' > .validate-branch-namerc.json
+
+# Set up Git hooks
+echo "bun lint-staged" > .husky/pre-commit
+echo "bun validate-branch-name" > .husky/pre-push
+echo "bun --no -- commitlint --edit \$1" > .husky/commit-msg
+chmod +x .husky/pre-commit
+chmod +x .husky/pre-push
+chmod +x .husky/commit-msg
+```
+
+### Commit Lint Configuration
+
+Create `commitlint.config.js` with the following content:
+
+```javascript
+module.exports = {
+  extends: ["@commitlint/config-conventional"],
+  rules: {
+    "type-enum": [
+      2,
+      "always",
+      [
+        "feat",
+        "fix",
+        "docs",
+        "style",
+        "refactor",
+        "perf",
+        "test",
+        "build",
+        "ci",
+        "chore",
+        "revert",
+      ],
+    ],
+    "type-case": [2, "always", "lowerCase"],
+    "type-empty": [2, "never"],
+    "scope-case": [2, "always", "lowerCase"],
+    "subject-empty": [2, "never"],
+    "subject-full-stop": [2, "never", "."],
+    "header-max-length": [2, "always", 72],
+  },
+};
+```
+
+## Branch Naming Convention
+
+Branches must follow this pattern:
+
+- `master` or `main`: Production branch
+- `dev`: Development branch
+- `uat`: User Acceptance Testing branch
+- `ppt`: Pre-production Testing branch [for product only]
+- Feature branches: `feature/:<TASK-NO>-description`
+- Bug fixes: `bugfix/:<TASK-NO>-description`
+- Hotfixes: `hotfix/:<TASK-NO>-description`
+- Release branches: `release/:<VERSION>-description`
+- Test branches: `test/:<TASK-NO>-description`
+- Chore branches: `chore/:<TASK-NO>-description`
+
+Note: Task numbers are optional and can reference Jira, GitHub issues, or other project management tools.
+
+## Commit Message Guidelines
+
+Commits must follow the Conventional Commits specification:
+
+```
+<type>(<scope>): <description>
+
+[optional body]
+
+[optional footer]
+```
+
+### Allowed Types
+
+- `feat`: New feature
+- `fix`: Bug fix
+- `docs`: Documentation changes
+- `style`: Code style changes (formatting, etc.)
+- `refactor`: Code refactoring
+- `perf`: Performance improvements
+- `test`: Adding or modifying tests
+- `build`: Build system changes
+- `ci`: CI configuration changes
+- `chore`: General maintenance
+- `revert`: Reverting previous changes
+
+## Automated Checks
+
+The following checks run automatically:
+
+- Pre-commit: Runs lint-staged
+- Pre-push: Validates branch naming
+- Commit-msg: Validates commit message format
+
+## Best Practices and Tips
+
+### For Teams
+
+1. **Documentation**: Keep this README updated with team-specific requirements
+2. **Training**: Ensure new team members understand the workflow
+3. **Reviews**: Use the standardized format to streamline code reviews
+4. **Integration**: Link commit messages to project management tools
+
+### For Individual Developers
+
+1. **Local Setup**: Verify all hooks are working after initial setup
+2. **Commit Frequency**: Make small, focused commits
+3. **Message Quality**: Write clear, descriptive commit messages
+4. **Branch Management**: Clean up branches after merging
+
+### Common Issues and Solutions
+
+1. **Hook Not Executing**:
+
+   - Verify permissions: `chmod +x .husky/*`
+   - Check Husky installation: `bun husky install`
+
+2. **Commit Message Rejected**:
+
+   - Review commit message format
+   - Use `git commit --amend` to fix the last commit
+
+3. **Branch Name Rejected**:
+   - Use `git branch -m new-name` to rename branch
+   - Follow the naming convention pattern
+
+## Tools Explained
+
+### Husky
+
+- Git hooks management
+- Automates pre-commit and pre-push checks
+- Ensures consistency across team
+
+### Prettier
+
+- Code formatting automation
+- Maintains consistent style
+- Integrated with pre-commit hooks
+
+### CommitLint
+
+- Validates commit message format
+- Ensures meaningful version control
+- Enables automated changelog generation
+
+### Validate Branch Name
+
+- Enforces branch naming conventions
+- Prevents inconsistent branch names
+- Maintains clear project structure
+
+## Notes
+
+- ESLint configuration is flexible and can be customized according to project requirements
+- This setup works for both NextJS 14 and Vite projects
+- Frontend-focused but applicable to backend projects as well
