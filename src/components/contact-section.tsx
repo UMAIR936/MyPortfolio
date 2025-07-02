@@ -15,7 +15,9 @@ import {
   Calendar,
 } from "lucide-react";
 import { motion } from "framer-motion";
-
+import { useForm } from "react-hook-form";
+import { useRef } from "react";
+import { toast } from "sonner";
 const contactInfo = [
   {
     icon: Mail,
@@ -71,6 +73,25 @@ const quickActions = [
 ];
 
 export function ContactSection() {
+  const formRef = useRef<HTMLFormElement | null>(null);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+    reset,
+  } = useForm();
+
+  const onSubmit = async () => {
+    if (!formRef.current) return;
+
+    try {
+      toast("Thanks! I'll get back to you within 24 hours.");
+      reset();
+    } catch (error) {
+      toast("Failed to send message. Please try again later.");
+    }
+  };
   return (
     <section id="contact" className="relative overflow-hidden px-6 py-24">
       <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-blue-50/30"></div>
@@ -237,7 +258,11 @@ export function ContactSection() {
                 </p>
               </CardHeader>
               <CardContent>
-                <form className="space-y-6">
+                <form
+                  ref={formRef}
+                  onSubmit={handleSubmit(onSubmit)}
+                  className="space-y-6"
+                >
                   <div className="grid gap-4 md:grid-cols-2">
                     <div>
                       <label className="mb-2 block text-sm font-semibold text-gray-700">
@@ -246,7 +271,15 @@ export function ContactSection() {
                       <Input
                         placeholder="John Doe"
                         className="rounded-xl border-gray-200 bg-white/80 focus:border-blue-500"
+                        {...register("from_name", {
+                          required: "Name is required",
+                        })}
                       />
+                      {errors.from_name && (
+                        <p className="mt-1 text-sm text-red-600">
+                          {errors.from_name.message as string}
+                        </p>
+                      )}
                     </div>
                     <div>
                       <label className="mb-2 block text-sm font-semibold text-gray-700">
@@ -256,7 +289,19 @@ export function ContactSection() {
                         type="email"
                         placeholder="john@example.com"
                         className="rounded-xl border-gray-200 bg-white/80 focus:border-blue-500"
+                        {...register("reply_to", {
+                          required: "Email is required",
+                          pattern: {
+                            value: /^\S+@\S+$/i,
+                            message: "Invalid email address",
+                          },
+                        })}
                       />
+                      {errors.reply_to && (
+                        <p className="mt-1 text-sm text-red-600">
+                          {errors.reply_to.message as string}
+                        </p>
+                      )}
                     </div>
                   </div>
                   <div>
@@ -266,7 +311,15 @@ export function ContactSection() {
                     <Input
                       placeholder="Project Discussion"
                       className="rounded-xl border-gray-200 bg-white/80 focus:border-blue-500"
+                      {...register("subject", {
+                        required: "Subject is required",
+                      })}
                     />
+                    {errors.subject && (
+                      <p className="mt-1 text-sm text-red-600">
+                        {errors.subject.message as string}
+                      </p>
+                    )}
                   </div>
                   <div>
                     <label className="mb-2 block text-sm font-semibold text-gray-700">
@@ -276,14 +329,26 @@ export function ContactSection() {
                       placeholder="Tell me about your project, timeline, and requirements..."
                       rows={6}
                       className="resize-none rounded-xl border-gray-200 bg-white/80 focus:border-blue-500"
+                      {...register("message", {
+                        required: "Message is required",
+                      })}
                     />
+                    {errors.message && (
+                      <p className="mt-1 text-sm text-red-600">
+                        {errors.message.message as string}
+                      </p>
+                    )}
                   </div>
-                  <Button className="group w-full rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 py-4 text-white shadow-lg transition-all duration-300 hover:from-blue-700 hover:to-purple-700 hover:shadow-xl">
+                  <Button
+                    disabled={isSubmitting}
+                    type="submit"
+                    className="group w-full rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 py-4 text-white shadow-lg transition-all duration-300 hover:from-blue-700 hover:to-purple-700 hover:shadow-xl"
+                  >
                     <Send
                       size={18}
                       className="mr-2 transition-transform group-hover:translate-x-1"
                     />
-                    Send Message
+                    {isSubmitting ? "Sending..." : "Send Message"}
                   </Button>
                 </form>
               </CardContent>

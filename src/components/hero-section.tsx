@@ -264,34 +264,41 @@ export function HeroSection() {
             transition={{ delay: 1.3 }}
             className="mb-16 flex flex-col items-center justify-center gap-6 sm:flex-row"
           >
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Button
-                size="lg"
-                className="hover:shadow-3xl group rounded-2xl bg-gradient-to-r from-blue-600 to-purple-600 px-10 py-6 text-lg font-semibold text-white shadow-2xl transition-all duration-300 hover:from-blue-700 hover:to-purple-700"
+            <a href="#contact">
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
-                <Mail className="mr-3" size={20} />
-                Let's Build Something Amazing
-                <motion.div
-                  animate={{ x: [0, 5, 0] }}
-                  transition={{
-                    duration: 1.5,
-                    repeat: Number.POSITIVE_INFINITY,
-                  }}
+                <Button
+                  size="lg"
+                  className="hover:shadow-3xl group rounded-2xl bg-gradient-to-r from-blue-600 to-purple-600 px-10 py-6 text-lg font-semibold text-white shadow-2xl transition-all duration-300 hover:from-blue-700 hover:to-purple-700"
                 >
-                  <ArrowRight className="ml-3" size={20} />
-                </motion.div>
-              </Button>
-            </motion.div>
+                  <Mail className="mr-3" size={20} />
+                  Let's Build Something Amazing
+                  <motion.div
+                    animate={{ x: [0, 5, 0] }}
+                    transition={{
+                      duration: 1.5,
+                      repeat: Number.POSITIVE_INFINITY,
+                    }}
+                  >
+                    <ArrowRight className="ml-3" size={20} />
+                  </motion.div>
+                </Button>
+              </motion.div>
+            </a>
 
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Button
-                variant="outline"
-                size="lg"
-                className="rounded-2xl border-2 border-gray-300 bg-white/80 px-10 py-6 text-lg font-semibold shadow-xl backdrop-blur-sm transition-all duration-300 hover:border-gray-400 hover:bg-white hover:shadow-2xl"
-              >
-                <Download className="mr-3" size={20} />
-                Download Resume
-              </Button>
+              <a href="/Umair_Ghaffar_Software_Engineer.pdf" download>
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="rounded-2xl border-2 border-gray-300 bg-white/80 px-10 py-6 text-lg font-semibold shadow-xl backdrop-blur-sm transition-all duration-300 hover:border-gray-400 hover:bg-white hover:shadow-2xl"
+                >
+                  <Download className="mr-3" size={20} />
+                  Download Resume
+                </Button>
+              </a>
             </motion.div>
           </motion.div>
 

@@ -4,7 +4,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
-
+import { Toaster } from "@/components/ui/sonner";
 export const metadata: Metadata = {
   title: "Umair Ghaffar - Software Engineer | AI & Full-Stack Developer",
   description:
@@ -38,7 +38,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={`${inter.className} antialiased`}>{children}</body>
+      <body className={`${inter.className} antialiased`}>
+        <main>
+          {children}
+          <Toaster />
+        </main>
+      </body>
     </html>
   );
 }
